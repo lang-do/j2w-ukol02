@@ -20,6 +20,8 @@ public class GeneratorController {
 
     private final Random nahodneCislo;
 
+    private static final int pocetObrazku = 8;
+
     public GeneratorController() throws IOException {
         nahodneCislo = new Random();
         seznamCitaty = readAllLines("citaty.txt");
@@ -36,15 +38,14 @@ public class GeneratorController {
     }
 
     @GetMapping("/")
-    public ModelAndView generator(){
+    public ModelAndView generatorCitatObrazek(){
 
-        ModelAndView result = new ModelAndView("generator");
+        ModelAndView result = new ModelAndView("generatorCitatObrazek");
 
-        int indexCitatu = nahodneCislo.nextInt(8);
-        //result.addObject("citat", indexCitatu);
+        int indexCitatu = nahodneCislo.nextInt(seznamCitaty.size());
         result.addObject("citat", seznamCitaty.get(indexCitatu));
 
-        int indexObrazku = nahodneCislo.nextInt(8);
+        int indexObrazku = nahodneCislo.nextInt(pocetObrazku);
         result.addObject("obrazek", String.format("/images/obr-%d.jpg", indexObrazku));
         return result;
     }
