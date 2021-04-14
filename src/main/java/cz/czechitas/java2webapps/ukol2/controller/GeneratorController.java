@@ -20,7 +20,7 @@ public class GeneratorController {
 
     private final Random nahodneCislo;
 
-    private static final int pocetObrazku = 8;
+    private static final int N_OBR = 8;
 
     public GeneratorController() throws IOException {
         nahodneCislo = new Random();
@@ -45,7 +45,7 @@ public class GeneratorController {
         int indexCitatu = nahodneCislo.nextInt(seznamCitaty.size());
         result.addObject("citat", seznamCitaty.get(indexCitatu));
 
-        int indexObrazku = nahodneCislo.nextInt(pocetObrazku);
+        int indexObrazku = nahodneCislo.nextInt(N_OBR);
         result.addObject("obrazek", String.format("/images/obr-%d.jpg", indexObrazku));
         return result;
     }
